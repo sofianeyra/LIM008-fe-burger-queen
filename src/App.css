@@ -7,7 +7,7 @@ h3 {
   margin: 0px;
 }
 
-.logotype{
+.logotype {
   width: 20%;
 
 }
@@ -18,6 +18,10 @@ h3 {
 
 .App-header {
   padding: 7px;
+}
+
+.form-control {
+  width: 20px;
 }
 
 table {
@@ -33,4 +37,16 @@ table {
 
 .table td {
   vertical-align: inherit;
+}
+
+.card {
+  width: 20px;
+}
+
+p {
+  text-align: right;
+}
+
+.food-image{
+  width:50%;
 }
