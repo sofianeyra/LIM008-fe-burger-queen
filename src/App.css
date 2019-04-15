@@ -16,12 +16,20 @@ h3 {
   width: 3%;
 }
 
+.W-name {
+  width: 20%;
+}
+
 .App-header {
   padding: 7px;
 }
 
 .form-control {
   width: 20px;
+}
+
+.food-image{
+  width:50%;
 }
 
 table {
@@ -43,10 +51,12 @@ table {
   width: 20px;
 }
 
-p {
+.logOut {
+  width: 13%;
+  z-index: 100;
+  position: absolute;
   text-align: right;
-}
-
-.food-image{
-  width:50%;
+  border: 0px;
+  left: 85%;
+  top: 4%;
 }
