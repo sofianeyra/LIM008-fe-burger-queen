@@ -4,7 +4,7 @@ import MenuItems from './components/Menu';
 import AddItem from './components/AddItem';
 import './App.css';
 import './responsive.css';
-import './bootstrap theme/bootstrap.min.css';
+import './bootstrap-theme/bootstrap.min.css';
 
 firebase.initializeApp({
   apiKey: "AIzaSyBd95MQtxM0qjsqcAb1b-JEXmmPnJ6Plh4",
