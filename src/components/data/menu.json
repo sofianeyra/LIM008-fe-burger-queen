@@ -1,0 +1,127 @@
+[
+    {
+        "food": {
+          "breakfast": [
+            {
+              "id": 0,
+              "image": "https://i.ibb.co/5F2TwdR/american-coffee.jpg",
+              "price": 5,
+              "item": "Café americano"
+            },
+            {
+              "id": 1,
+              "image": "https://i.ibb.co/bgSMs3t/coffee-with-milk.jpg",
+              "price": 7,
+              "item": "Café con leche"
+            },
+            {
+              "id": 2,
+             "image": "https://i.ibb.co/ZBQ9MkM/sandwich-cheese.jpg",
+              "price": 10,
+              "item": "Sandwich de jamón y queso"
+            },
+            {
+              "id": 3,
+              "image": "https://i.ibb.co/Qb1Y5d5/fruit-juice.jpg",
+              "price": 7,
+              "item": "Jugo de frutas natural"
+            }
+          ],
+          "dinner": [
+            {
+              "id": 4,
+              "image": "https://i.ibb.co/Byk2NQv/simple-burger.jpg",
+              "price": 10,
+              "item": "Hamburguesa de res simple"
+            },
+            {
+              "id": 5,
+              "image": "https://i.ibb.co/whVWs1H/doble-burger.jpg",
+             "price": 15,
+              "item": "Hamburguesa de res doble"
+            },
+            {
+              "id": 6,
+              "image": "https://i.ibb.co/Sr81jZ8/chicken-burger.jpg",
+              "price": 10,
+              "item": "Hamburguesa de pollo simple"
+            },
+            {
+              "id": 7,
+              "image": "https://i.ibb.co/tq67cRR/doble-chicken-burger.jpg",
+              "price": 15,
+              "item": "Hamburguesa de pollo doble"
+            },
+            {
+              "id": 8,
+              "image": "https://i.ibb.co/HgQg8S6/vegetarian-burger.jpg",
+              "price": 10,
+              "item": "Hamburguesa vegetariana simple"
+            },
+            {
+             "id": 9,
+              "image": "https://i.ibb.co/T2vJ99Y/doble-vegetarian-burger.jpg",
+              "price": 15,
+              "item": "Hamburguesa vegetariana doble"
+            },
+            {
+              "id": 10,
+              "image": "https://i.ibb.co/qyMkyv8/fried.jpg",
+              "price": 5,
+              "item": "Papas fritas"
+            },
+            {
+              "id": 11,
+              "image": "https://i.ibb.co/vhJ4bXr/onion-rings.jpg",
+              "price": 5,
+              "item": "Aros de cebolla"
+            },
+            {
+              "id": 12,
+              "image": "https://i.ibb.co/hL2nMtx/agua-500.jpg",
+              "price": 5,
+              "item": "Agua 500ml"
+            },
+            {
+              "id": 13,
+              "image": "https://i.ibb.co/3sBZQpf/agua-750.jpg",
+              "price": 8,
+              "item": "Agua 750ml"
+            },
+            {
+              "id": 14,
+              "image": "https://i.ibb.co/WxhvRWt/gaseosa-500ml.jpg",
+              "price": 7,
+              "item": "Gaseosa 500ml"
+            },
+            {
+              "id": 15,
+              "image": "https://i.ibb.co/PZ8pK7x/gaseosa-750ml.jpg",
+              "price": 10,
+              "item": "Gaseosa 750ml"
+            }
+          ],
+          "extras": [
+            {
+              "id": 16,
+              "image": "https://i.ibb.co/LxLN974/cheese.jpg",
+              "price": 1,
+              "item": "Queso"
+            },
+            {
+              "id": 17,
+              "image": "https://i.ibb.co/23t6sPP/huevo.jpg",
+              "price": 1,
+              "item": "Huevo"
+            }
+          ]
+        },
+        "typefood": "breakfast",
+        "newOrder": {
+          "user": "",
+          "totalPrice": 0,
+          "items": []
+        },
+        "Orders": []
+      }
+]
