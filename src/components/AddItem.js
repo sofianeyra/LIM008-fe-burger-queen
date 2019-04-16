@@ -1,10 +1,10 @@
 import React from 'react';
 
-const AddItem = ({ name, price, count, add, remove, i, reduce}) => {
+const AddItem = ({ name, price, count, remove, i, add, reduce }) => {
   return (
     <tr>
       <td>{name}</td>
-      <td className="text-center">s/.{price}</td>
+      <td className="text-center">s/. {price}</td>
       <td className="text-center">
         <i className="cursor fas fa-minus mr-2 text-secondary" onClick={()=> reduce(price, name, i)}></i>
         <span className="badge badge-pill badge-primary">{count}</span>

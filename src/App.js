@@ -3,21 +3,23 @@ import firebase from 'firebase'
 import MenuItems from './components/Menu';
 import AddItem from './components/AddItem';
 import './App.css';
-import './responsive.css';
 import './bootstrap-theme/bootstrap.min.css';
 
 firebase.initializeApp({
   apiKey: "AIzaSyBd95MQtxM0qjsqcAb1b-JEXmmPnJ6Plh4",
   authDomain: "burgerqueen-d1101.firebaseapp.com",
-  projectId: "burgerqueen-d1101"
+  databaseURL: "https://burgerqueen-d1101.firebaseio.com",
+  projectId: "burgerqueen-d1101",
+  storageBucket: "burgerqueen-d1101.appspot.com",
+  messagingSenderId: "775031170392"
 })
 
 const db = firebase.firestore();
-const settings = {/* your settings... */};
+const settings = {timestampsInSnapshots: true};
 db.settings(settings);
 
 class App extends Component {
-  constructor(props) {
+  constructor(props)  {
     super(props);
     this.state = {
       food: {
@@ -180,6 +182,7 @@ class App extends Component {
     let sum = 0;
     newOrder.items.forEach(({ price }) => sum += price);
     newOrder.totalPrice = sum;
+
     this.setState({ newOrder })
   }
 
@@ -211,8 +214,9 @@ class App extends Component {
       }
     })
     this.sumTotalOrder(newOrder);
+
   }
-  
+
   handleAddItem = (name, priceI, idActual) => {
     const { newOrder } = this.state;
 
@@ -230,7 +234,12 @@ class App extends Component {
     this.sumTotalOrder(newOrder);
   }
 
-  
+  handleRemove = (index) => {
+    const { newOrder } = this.state;
+    newOrder.items.splice(index, 1);
+    this.sumTotalOrder(newOrder)
+  }
+ 
   render() {
     const {typefood, food, newOrder } = this.state;
     const size = Object.keys(food);
@@ -259,7 +268,7 @@ class App extends Component {
               <table className="table">
                 <thead>
                   <tr>
-                    <td colSpan="2"><input className="form-control" type="text" placeholder="Nombre de Cliente" onChange={this.handleClient} value={newOrder.user}/></td>
+                    <td colSpan="2"><input className="form-control" type="text" placeholder="Nombre de Cliente"/></td>
                     <td colSpan="2"><button className="btn btn-success" onClick={this.handleClick}>Enviar a cocina</button></td>
                   </tr>
                   <tr className="text-center">
