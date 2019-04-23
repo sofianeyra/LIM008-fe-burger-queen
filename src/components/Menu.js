@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import MenuItems from './showMenu';
 
 class Menu extends Component {
     constructor () {
       super();
       this.state = {
-        food: {},
+        food: {
+          'breakfast':[]
+        },
         typefood: 'breakfast',
         newOrder: {
             user: '',
@@ -13,46 +16,29 @@ class Menu extends Component {
           },
           Orders: []
         }
-      };
+    };
   
     componentDidMount() {
       fetch('https://raw.githubusercontent.com/sofianeyra/LIM008-fe-burger-queen/develop/src/data/menu.json')
         .then(res => res.json())
         .then((json) => {
           this.setState({
-            menu: json,
+            food: {}
           });
         });
-  
-    handleClick = () => {
-        const { user, items, totalPrice } = this.state.newOrder;
-        db.collection("Orders").add({
-          user, items, totalPrice
-        })
-          .then(docRef => {
-            this.setState({
-              newOrder: {
-                user: '',
-                totalPrice: 0,
-                items: []
-              }
-            })
-            console.log("Document written with ID: ", docRef.id);
-          })
-          .catch((error) => {
-            console.error("Error adding document: ", error);
-          });
     }
     
     handleChange = (e) => {
         this.setState({
           typefood: e.target.name
         })
-      }
+    }
+
     render(){
     const { food, typefood } = this.state;
     const size = Object.keys(food);
     return (
+      <div>
         <button className="btn btn-primary m-3" name="breakfast" onClick={this.handleChange}>Desayuno</button>
         <button className="btn btn-primary m-3" name="dinner" onClick={this.handleChange}>Almuerzo/Cena</button>
         <button className="btn btn-primary m-3" name="extras"onClick={this.handleChange}>Extras</button>
@@ -70,8 +56,9 @@ class Menu extends Component {
             </div>
           </div>
         </div>
+      </div>
     );
-    }
-    } 
+  }
 }
-  export default Menu;
+
+export default Menu;

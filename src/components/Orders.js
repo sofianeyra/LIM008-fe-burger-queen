@@ -1,16 +1,44 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { render } from 'react-testing-library';
+import AddItem from './AddItem';
+import firebase from '../firebase';
+
+const db = firebase.firestore;
 
 class Orders extends Component {
   constructor() {
     super();
     this.state = {
-      pedidos: [],
-    };
-  }
+      newOrder: {
+        user: '',
+        totalPrice: 0,
+        items: []
+      },
+      Orders: []
+    }
+  };
 
-  sumTotalOrder = (newOrder) => {
+  handleClick = () => {
+    const { user, items, totalPrice } = this.state.newOrder;
+    db.collection("Orders").add({
+      user, items, totalPrice
+    })
+      .then(docRef => {
+        this.setState({
+          newOrder: {
+            user: '',
+            totalPrice: 0,
+            items: []
+          }
+        })
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      });
+    }
+
+   sumTotalOrder = (newOrder) => {
     let sum = 0;
     newOrder.items.forEach(({ price }) => sum += price);
     newOrder.totalPrice = sum;
@@ -71,12 +99,10 @@ class Orders extends Component {
     newOrder.items.splice(index, 1);
     this.sumTotalOrder(newOrder)
   }
-  }
 
-  render() {
-    const {typefood, newOrder } = this.state;
-    const size = Object.keys(food);
-    return(
+  render(){
+  const { newOrder } = this.state;
+  return(
       <div className="col-md-5">
               <table className="table">
                 <thead>
@@ -103,6 +129,7 @@ class Orders extends Component {
                 </tbody>
               </table>
             </div>
-    )
+    );
   }
+}
 export default Orders;
