@@ -27,6 +27,6 @@ AddItem.propTypes = {
   i: PropTypes.number.isRequired,
   add: PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,
-  count: PropTypes.func.isRequired,
+  count: PropTypes.number.isRequired,
   reduce: PropTypes.func.isRequired,
 };

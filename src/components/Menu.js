@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import firebase from '../firebase';
+import db from '../firebase';
 import MenuItems from './showItems';
 import AddItem from './AddItem';
-
-const db = firebase.firestore;
 
 class Menu extends Component {
   constructor(props) {
@@ -137,7 +135,7 @@ class Menu extends Component {
 
   handleClick = () => {
     const { user, items, totalPrice } = this.state.newOrder;
-    db.collection("orders").add({
+    db.collection("Orders").add({
       user, items, totalPrice
     })
       .then(docRef => {

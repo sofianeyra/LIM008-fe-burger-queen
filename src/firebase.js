@@ -1,12 +1,12 @@
 import firebase from 'firebase';
 
 const config = {
-  apiKey: 'AIzaSyBd95MQtxM0qjsqcAb1b-JEXmmPnJ6Plh4',
-  authDomain: 'burgerqueen-d1101.firebaseapp.com',
-  databaseURL: 'https://burgerqueen-d1101.firebaseio.com',
-  projectId: 'burgerqueen-d1101',
-  storageBucket: 'burgerqueen-d1101.appspot.com',
-  messagingSenderId: '775031170392',
+  apiKey: 'AIzaSyDwB3qJRB-XpVaJIqAysxlPjL0bNpsKgd4',
+  authDomain: 'burger-queen-45463.firebaseapp.com',
+  projectId: 'burger-queen-45463',
 };
+
 firebase.initializeApp(config);
-export default firebase;
+const db = firebase.firestore();
+
+export default db;
