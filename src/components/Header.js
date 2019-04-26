@@ -10,12 +10,6 @@ class Header extends Component {
           <img className="logotype" src="https://i.ibb.co/q7BZWSZ/logotype.png" alt="logotype" />
           <img className="icon-logo" src="https://i.ibb.co/hczsnnj/burger-1.png" alt="icon-logo" />
         </h3>
-        <button className="logOut btn-primary" type="button">
-          {' '}
-          <img src="https://i.ibb.co/NYTMVvf/logout-2.png" alt="logOut" />
-          {' '}
-          CERRAR SESIÓN
-        </button>
       </header>
     );
   }

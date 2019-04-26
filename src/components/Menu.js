@@ -1,41 +1,239 @@
 import React, { Component } from 'react';
-import MenuItems from './showMenu';
+import firebase from '../firebase';
+import MenuItems from './showItems';
+import AddItem from './AddItem';
+
+const db = firebase.firestore;
 
 class Menu extends Component {
-    constructor () {
-      super();
-      this.state = {
-        food: {
-          'breakfast':[]
-        },
-        typefood: 'breakfast',
-        newOrder: {
+  constructor(props) {
+    super(props);
+    this.state = {
+      "food": {
+        "breakfast": [
+          {
+            "id": 0,
+            "image": "https://i.ibb.co/5F2TwdR/american-coffee.jpg",
+            "price": 5,
+            "item": "Café americano"
+          },
+          {
+            "id": 1,
+            "image": "https://i.ibb.co/bgSMs3t/coffee-with-milk.jpg",
+            "price": 7,
+            "item": "Café con leche"
+          },
+          {
+            "id": 2,
+           "image": "https://i.ibb.co/ZBQ9MkM/sandwich-cheese.jpg",
+            "price": 10,
+            "item": "Sandwich de jamón y queso"
+          },
+          {
+            "id": 3,
+            "image": "https://i.ibb.co/Qb1Y5d5/fruit-juice.jpg",
+            "price": 7,
+            "item": "Jugo de frutas natural"
+          }
+        ],
+        "dinner": [
+          {
+            "id": 4,
+            "image": "https://i.ibb.co/Byk2NQv/simple-burger.jpg",
+            "price": 10,
+            "item": "Hamburguesa de res simple"
+          },
+          {
+            "id": 5,
+            "image": "https://i.ibb.co/whVWs1H/doble-burger.jpg",
+           "price": 15,
+            "item": "Hamburguesa de res doble"
+          },
+          {
+            "id": 6,
+            "image": "https://i.ibb.co/Sr81jZ8/chicken-burger.jpg",
+            "price": 10,
+            "item": "Hamburguesa de pollo simple"
+          },
+          {
+            "id": 7,
+            "image": "https://i.ibb.co/tq67cRR/doble-chicken-burger.jpg",
+            "price": 15,
+            "item": "Hamburguesa de pollo doble"
+          },
+          {
+            "id": 8,
+            "image": "https://i.ibb.co/HgQg8S6/vegetarian-burger.jpg",
+            "price": 10,
+            "item": "Hamburguesa vegetariana simple"
+          },
+          {
+           "id": 9,
+            "image": "https://i.ibb.co/T2vJ99Y/doble-vegetarian-burger.jpg",
+            "price": 15,
+            "item": "Hamburguesa vegetariana doble"
+          },
+          {
+            "id": 10,
+            "image": "https://i.ibb.co/qyMkyv8/fried.jpg",
+            "price": 5,
+            "item": "Papas fritas"
+          },
+          {
+            "id": 11,
+            "image": "https://i.ibb.co/vhJ4bXr/onion-rings.jpg",
+            "price": 5,
+            "item": "Aros de cebolla"
+          },
+          {
+            "id": 12,
+            "image": "https://i.ibb.co/hL2nMtx/agua-500.jpg",
+            "price": 5,
+            "item": "Agua 500ml"
+          },
+          {
+            "id": 13,
+            "image": "https://i.ibb.co/3sBZQpf/agua-750.jpg",
+            "price": 8,
+            "item": "Agua 750ml"
+          },
+          {
+            "id": 14,
+            "image": "https://i.ibb.co/WxhvRWt/gaseosa-500ml.jpg",
+            "price": 7,
+            "item": "Gaseosa 500ml"
+          },
+          {
+            "id": 15,
+            "image": "https://i.ibb.co/PZ8pK7x/gaseosa-750ml.jpg",
+            "price": 10,
+            "item": "Gaseosa 750ml"
+          }
+        ],
+        "extras": [
+          {
+            "id": 16,
+            "image": "https://i.ibb.co/LxLN974/cheese.jpg",
+            "price": 1,
+            "item": "Queso"
+          },
+          {
+            "id": 17,
+            "image": "https://i.ibb.co/23t6sPP/huevo.jpg",
+            "price": 1,
+            "item": "Huevo"
+          }
+        ]
+      },
+      typefood: 'breakfast',
+      newOrder: {
+        user: '',
+        totalPrice: 0,
+        items: []
+      },
+      orders: []
+    }
+  }
+
+  handleClick = () => {
+    const { user, items, totalPrice } = this.state.newOrder;
+    db.collection("orders").add({
+      user, items, totalPrice
+    })
+      .then(docRef => {
+        this.setState({
+          newOrder: {
             user: '',
             totalPrice: 0,
             items: []
-          },
-          Orders: []
-        }
-    };
-  
-    componentDidMount() {
-      fetch('https://raw.githubusercontent.com/sofianeyra/LIM008-fe-burger-queen/develop/src/data/menu.json')
-        .then(res => res.json())
-        .then((json) => {
-          this.setState({
-            food: {}
-          });
-        });
-    }
-    
-    handleChange = (e) => {
-        this.setState({
-          typefood: e.target.name
+          }
         })
-    }
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      });
+  }
 
-    render(){
-    const { food, typefood } = this.state;
+  handleChange = (e) => {
+    this.setState({
+      typefood: e.target.name
+    })
+  }
+
+  sumTotalOrder = (newOrder) => {
+    let sum = 0;
+    newOrder.items.forEach(({ price }) => sum += price);
+    newOrder.totalPrice = sum;
+
+    this.setState({ newOrder })
+  }
+
+  addCount = (priceI, idActual) => {
+    const { newOrder } = this.state;
+    newOrder.items.forEach(item => {
+      if (item.id === idActual) {
+        if (item.price === priceI) {
+          priceI = priceI / item.count;
+        }
+        item.count++;
+        item.price = priceI * item.count;
+      }
+    })
+    this.sumTotalOrder(newOrder);
+  }
+
+  reduceCount = (priceI, idActual, i) => {
+    const { newOrder } = this.state;
+
+    newOrder.items.forEach(item => {
+      if (item.id === idActual) {
+        item.price = priceI / item.count;
+        item.count--;
+        item.price = item.price * item.count;
+        if (item.count === 0) {
+          this.handleRemove(i);
+        }
+      }
+    })
+    this.sumTotalOrder(newOrder);
+
+  }
+
+  handleAddItem = (name, priceI, idActual) => {
+    const { newOrder } = this.state;
+
+    if (newOrder.items.find(({ id }) => id === idActual)) {
+      this.addCount(priceI, idActual);
+    } else {
+      newOrder.items.push({
+        item: name,
+        price: priceI,
+        id: idActual,
+        count: 1
+      });
+
+    }
+    this.sumTotalOrder(newOrder);
+  }
+
+  handleRemove = (index) => {
+    const { newOrder } = this.state;
+    newOrder.items.splice(index, 1);
+    this.sumTotalOrder(newOrder)
+  }
+
+  handleClient = (e) => {
+    this.setState({
+      newOrder: {
+        ...this.state.newOrder,
+        user: e.target.value
+      }
+    })
+  }
+
+  render() {
+    const {typefood, food, newOrder } = this.state;
     const size = Object.keys(food);
     return (
       <div>
@@ -54,11 +252,36 @@ class Menu extends Component {
                 }
               </div>
             </div>
+            <div className="col-md-5">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <td colSpan="2"><input className="form-control" type="text" placeholder="Nombre de Cliente"/></td>
+                    <td colSpan="2"><button className="btn btn-success" onClick={this.handleClick}>Enviar a cocina</button></td>
+                  </tr>
+                  <tr className="text-center">
+                    <th scope="col">Items</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {newOrder.items.map(({ item, price, count }, i) =>
+                    <AddItem name={item} price={price} key={i} i={i} count={count}
+                      add={this.addCount} remove={this.handleRemove} reduce={this.reduceCount} />
+                  )}
+                  <tr className="text-center table-active">
+                    <th>Total</th>
+                    <th className="text-center">s/.{newOrder.totalPrice}</th>
+                    <td colSpan="2"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     );
   }
 }
-
 export default Menu;
