@@ -1,0 +1,51 @@
+body{
+  margin: 0px;
+  padding: 0px;
+}
+
+h3 {
+  margin: 0px;
+}
+
+.logotype {
+  width: 20%;
+
+}
+
+.icon-logo {
+  width: 3%;
+}
+
+.W-name {
+  width: 20%;
+}
+
+.App-header {
+  padding: 7px;
+}
+
+.form-control {
+  width: 20px;
+}
+
+.food-image{
+  width:50%;
+}
+
+table {
+  padding: 0px;
+  border: none;
+  border-radius: 14px;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.table td {
+  vertical-align: inherit;
+}
+
+.card {
+  width: 15px;
+}
